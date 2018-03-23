@@ -4,11 +4,12 @@
 #define __EMPLOYEE_H
 class Employee:public Person{
     private:
+    std::string ID;
     
     protected:
 
     public:
-    std::string ID;
+    
     
 };
 #endif
