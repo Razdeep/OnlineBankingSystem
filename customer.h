@@ -4,10 +4,13 @@
 #define __CUSTOMER_H
 class Customer:public Person{
     private:
-    std::string ID;
-    
+    float balance;
+
     protected:
 
     public:
+    Customer();
+    void setValues();
+
 };
 #endif
