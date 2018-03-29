@@ -8,6 +8,6 @@ class Txn{
     char type;
     public:
     Txn(); //@TODO
-    void printTxn();//@TODO
+    void printTxn() const;//@TODO
 };
 #endif

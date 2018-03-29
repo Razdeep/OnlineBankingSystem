@@ -1,4 +1,4 @@
 #include"person.h"
-void Person::getBasicDetails(){
+void Person::getBasicDetails() const{
     //@TODO
 }

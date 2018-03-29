@@ -6,6 +6,6 @@ class TimeStamp{
     unsigned int year;
     public:
     TimeStamp();
-    void getTime(); //@TODO
+    void getTime() const; //@TODO
 };
 #endif

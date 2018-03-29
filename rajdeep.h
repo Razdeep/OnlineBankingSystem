@@ -3,12 +3,12 @@
 #define __RAJDEEP_H
 class Rajdeep{
     public:
-    void delay(); //@TODO
-    void delay(const long int); //@TODO
-    void drawLine(int); //@TODO
-    void drawLine(const char,int); //@TODO with default arg
-    void drawLineTrans(int,int); //@TODO
-    void drawLineTrans(const char,int,int); //@TODO with default arg
-    void transText(const std::string,int); //@TODO
+    void delay() const; //@TODO
+    void delay(const long int) const; //@TODO
+    void drawLine(int) const; //@TODO
+    void drawLine(const char,int) const; //@TODO with default arg
+    void drawLineTrans(int,int) const; //@TODO
+    void drawLineTrans(const char,int,int) const; //@TODO with default arg
+    void transText(const std::string,int) const; //@TODO
 };
 #endif

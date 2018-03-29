@@ -14,9 +14,9 @@ class Person{
     TimeStamp dob;
     
     public:
-    void getBasicDetails(); //@TODO
-    int getID();
-    char getGroupID();
-    std::string getCombinedID(); //@TODO GROUPID+ID
+    void getBasicDetails() const; //@TODO
+    int getID() const;
+    char getGroupID() const;
+    std::string getCombinedID() const; //@TODO GROUPID+ID
 };
 #endif
