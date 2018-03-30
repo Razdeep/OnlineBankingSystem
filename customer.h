@@ -10,7 +10,7 @@ class Customer:public Person{
 
     public:
     Customer(char groupID,int ID,std::string name,std::string address,long int phone, TimeStamp dob,float balance):
-    Person(groupID,name,address,phone,dob){};
+    Person(groupID,ID,name,address,phone,dob){};
 
     // void setValues();
 
