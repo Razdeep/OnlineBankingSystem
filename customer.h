@@ -9,8 +9,8 @@ class Customer:public Person{
     protected:
 
     public:
-    Customer(char groupID,int ID,std::string name,std::string address,long int phone, TimeStamp dob,float balance):
-    Person(groupID,ID,name,address,phone,dob){};
+    Customer(int ID,std::string name,std::string address,long int phone, TimeStamp dob,float balance):
+    Person(ID,name,address,phone,dob),balance(balance){};
 
     // void setValues();
 

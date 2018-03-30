@@ -6,7 +6,6 @@ class Person{
     private:
 
     protected:
-    char groupID;
     int ID;
     std::string name;
     std::string address;
@@ -14,12 +13,11 @@ class Person{
     TimeStamp dob;
     
     public:
-    Person(char groupID,int ID,std::string name,std::string address,long int phone, TimeStamp dob):
-    groupID(groupID),name(name),address(address),phone(phone),dob(dob){};
+    Person(int ID,std::string name,std::string address,long int phone, TimeStamp dob):
+    ID(ID),name(name),address(address),phone(phone),dob(dob){};
 
     void getBasicDetails() const; //@TODO
     int getID() const;
-    char getGroupID() const;
-    std::string getCombinedID() const; //@TODO GROUPID+ID
+    
 };
 #endif

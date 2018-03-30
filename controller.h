@@ -6,6 +6,7 @@ class Controller{
     void showMenu() const;
     void showCustomerLogin() const;
     void showCustomerPortal() const;
+    bool validateCustomer() const;
     void showEmployeePortal() const;
     void showCredits() const;
 };
