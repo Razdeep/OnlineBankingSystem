@@ -13,6 +13,7 @@ class Person{
     TimeStamp dob;
     
     public:
+    Person(){}
     Person(int ID,std::string name,std::string address,long int phone, TimeStamp dob):
     ID(ID),name(name),address(address),phone(phone),dob(dob){};
 

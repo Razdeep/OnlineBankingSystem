@@ -9,9 +9,11 @@ class Customer:public Person{
     protected:
 
     public:
+    Customer():Person(){}
     Customer(int ID,std::string name,std::string address,long int phone, TimeStamp dob,float balance):
     Person(ID,name,address,phone,dob),balance(balance){};
-
+    
+    void showDetails() const;
     // void setValues();
 
 };

@@ -5,3 +5,7 @@ TimeStamp::TimeStamp(TimeStamp &other){
     month=other.month;
     year=other.year;
 }
+std::string TimeStamp::toString() const{
+    // IOMANIP TO IMPLEMENTED HERE
+    std::cout<<date<<"/"<<month<<"/"<<year<<std::endl;
+}
