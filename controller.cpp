@@ -26,7 +26,8 @@ void Controller::showMenu() const
 void Controller::showCustomerLogin() const{
     using namespace std;
     int id;
-    string pass;
+    // string pass;
+    char pass[30];
     cout<<"Login ID: ";
     cin>>id;
     cout<<"Password: ";

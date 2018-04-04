@@ -7,13 +7,25 @@ using namespace std;
 int main()
 {
     fstream fin("customer.txt",ios::binary|ios::in);
-    // TimeStamp ts(21,7,98);
-    // Customer customer(1,"Rajdeep","Kolkata",9674810029,TimeStamp(21,7,98),(float)25000);
-    // Customer customer(1,new string("Rajdeep"),new string("Kolkata"),(long int)9674810029,new TimeStamp(21,7,98),(float)25000.0);
     Customer customer;
-    fin.read((char*)&customer,sizeof(customer));
+    if(!fin.is_open())
+    {
+        cout<<"Error: Cannot open file!!"<<endl;
+    }
+    else{
+        // WHY ISN'T THIS WORKING?
+        // WHY IS THE LAST RECORD BEING PRINTED TWICE?
+        // while(!fin.eof())
+        // {
+        //     fin.read((char*)&customer,sizeof(customer));
+        //     customer.showDetails();
+        // }
+        while(fin.read((char*)&customer,sizeof(customer)))
+        {
+            customer.showDetails();
+        }
+    }
     
-    customer.showDetails();
     fin.close();
     return 0;
 }

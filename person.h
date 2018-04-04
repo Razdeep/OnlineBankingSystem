@@ -17,13 +17,15 @@ class Person{
     
     public:
     Person(){}
-    Person(int ID,char *name,char *address,long int phone, TimeStamp dob):
-    ID(ID),phone(phone),dob(dob)/*,name(name),address(address)*/{
+    // Person(int ID,std::string name,std::string address,long int phone, TimeStamp dob):
+    // ID(ID),phone(phone),dob(dob),name(name),address(address){};
+    Person(int ID,char* name,char* address,long int phone, TimeStamp dob):
+        ID(ID),phone(phone),dob(dob){
         strcpy(this->name,name);
         strcpy(this->address,address);
     };
 
-    void getBasicDetails() const; //@TODO
+    void printBasicDetails() const; //@TODO
     int getID() const;
     
 };
