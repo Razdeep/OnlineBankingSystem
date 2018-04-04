@@ -9,4 +9,5 @@ std::string TimeStamp::toString() const{
     // IOMANIP TO IMPLEMENTED HERE
     std::cout<<date<<"/"<<month<<"/"<<year<<std::endl;
     //STRINGBUILDER TO BE IMPLEMENTED
+    return std::string("RRC: BUILT STRING TO BE RETURNED FROM HERE");
 }
