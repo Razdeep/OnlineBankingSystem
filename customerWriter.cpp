@@ -11,8 +11,10 @@ int main()
     // Customer customer(1,"Rajdeep","Kolkata",9674810029,TimeStamp(21,7,98),(float)25000);
     // Customer customer(1,new string("Rajdeep"),new string("Kolkata"),(long int)9674810029,new TimeStamp(21,7,98),(float)25000.0);
     int id=1;
-    string name="Rajdeeep";
-    string address="Kolkata";
+    // string name="Rajdeeep";
+    // string address="Kolkata";
+    char *name="Rajdeep";
+    char *address="Kolkata";
     long int phone= 9674810029;
     // TimeStamp *ts=new TimeStamp(21,7,98);
     float bal=25000;

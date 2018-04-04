@@ -1,5 +1,6 @@
 #include"customer.h"
+using namespace std;
 void Customer::showDetails() const{
-    using namespace std;
+    
     cout<<ID<<endl<<name<<endl<<address<<endl<<phone<<endl<<dob.toString()<<endl<<balance<<endl;
 }
