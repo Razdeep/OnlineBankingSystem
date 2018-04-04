@@ -11,5 +11,6 @@ class Credential{
     Credential(int id,char* pass):id(id){
         strcpy(this->pass,pass);
     };
+    bool operator==(const Credential&);
 };
 #endif

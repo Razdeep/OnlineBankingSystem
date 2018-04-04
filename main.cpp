@@ -7,7 +7,6 @@ using namespace std;
 
 int main()
 {
-    Controller controller;
-    controller.showMenu();
+    Controller::showMenu();
     return 0;
 }

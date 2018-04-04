@@ -2,10 +2,10 @@
 #include"credential.h"
 #include<iostream>
 
-void Controller:: showBanner() const{
+void Controller:: showBanner(){
     //@TODO
 }
-void Controller::showMenu() const
+void Controller::showMenu()
 {
     int ch;
     std::cout<<"1. Customer Login"<<std::endl;
@@ -23,7 +23,7 @@ void Controller::showMenu() const
         break;
     }
 }
-void Controller::showCustomerLogin() const{
+void Controller::showCustomerLogin(){
     using namespace std;
     int id;
     // string pass;
@@ -32,8 +32,16 @@ void Controller::showCustomerLogin() const{
     cin>>id;
     cout<<"Password: ";
     cin>>pass;
-    Credential credential(id,pass);
+    Credential userCredential(id,pass);
+    Credential originalCredential(123,"raj");
+    if(userCredential==originalCredential)
+    {
+        cout<<"Authentication successful"<<endl;
+    }
+    else{
+        cout<<"Authentication Unsuccessful"<<endl;
+    }
 }
-void Controller::showCustomerPortal() const{
+void Controller::showCustomerPortal() {
     // @TODO
 }
