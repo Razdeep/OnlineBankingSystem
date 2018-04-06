@@ -37,11 +37,32 @@ void Controller::showCustomerLogin(){
     if(userCredential==originalCredential)
     {
         cout<<"Authentication successful"<<endl;
+        // @TODO LINK TO showCustomerPortal()
     }
     else{
         cout<<"Authentication Unsuccessful"<<endl;
     }
 }
 void Controller::showCustomerPortal() {
-    // @TODO
+    using namespace std;
+    cout<<"1. View Balance"<<endl;
+    cout<<"2. View Transactions"<<endl;
+    cout<<"3. Change Password"<<endl;
+    int ch;
+    cin>>ch;
+    switch(ch)
+    {
+        case 1:
+
+        break;
+        case 2:
+
+        break;
+        case 3:
+
+        break;
+
+        default:
+        cout<<"Invalid Option"<<endl;
+    }
 }

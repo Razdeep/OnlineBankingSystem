@@ -6,7 +6,6 @@ class Controller{
     static void showMenu();
     static void showCustomerLogin();
     static void showCustomerPortal();
-    static bool validateCustomer();
     static void showEmployeePortal();
     static void showCredits();
 };
