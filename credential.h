@@ -8,7 +8,7 @@ class Credential{
     // std::string pass;
     char pass[30];
     // Credential(int id,std::string pass):id(id),pass(pass){}
-    Credential(int id,char* pass):id(id){
+    Credential(int id,const char* pass):id(id){
         strcpy(this->pass,pass);
     };
     bool operator==(const Credential&);

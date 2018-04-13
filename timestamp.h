@@ -6,7 +6,7 @@ class TimeStamp{
     unsigned int month;
     unsigned int year;
 
-    int timeWeight() const;   // @TODO && TO BE IMPELEMENTED IN THE OPERATOR FUNCTIONS
+    int timeWeight() const;
                         // RETURNS (year*10000)+(month*100)+(date*1)
 
     public:
@@ -18,8 +18,8 @@ class TimeStamp{
 
     std::string toString() const;   // @TODO
 
-    bool operator>(const TimeStamp&) const; //@TODO
-    bool operator<(const TimeStamp&) const; // @TODO
-    bool operator==(const TimeStamp&) const; // @TODO
+    bool operator>(const TimeStamp&) const; // @DONE
+    bool operator<(const TimeStamp&) const; // @DONE
+    bool operator==(const TimeStamp&) const; // @DONE
 };
 #endif

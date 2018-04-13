@@ -34,6 +34,7 @@ void Controller::showCustomerLogin(){
     cin>>pass;
     Credential userCredential(id,pass);
     Credential originalCredential(123,"raj");
+    //A VECTOR TO BE LOADED FROM FILE AND TO BE MATCHED WITH THE CREDENTIAL
     if(userCredential==originalCredential)
     {
         cout<<"Authentication successful"<<endl;
