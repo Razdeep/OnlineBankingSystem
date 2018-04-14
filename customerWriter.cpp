@@ -19,7 +19,7 @@ int main()
     char address[30]="Kolkata";
     long int phone= 9674810029;
     char pass[]="PASS1";
-    // TimeStamp *ts=new TimeStamp(21,7,98);
+    // string pass="PASS1";
     float bal=25000;
     Customer customer(id,name,address,phone,ts,pass,bal);
     fout.write((char*)&customer,sizeof(customer));
@@ -28,6 +28,7 @@ int main()
     // NEW CUSTOMER
     // editing the previous variables 
     strcpy(name,"sayan");
+    // string name2="Sayan";
     phone= 65333629;
     bal=15000;
     Customer customer2(id,name,address,phone,ts,"PASS2",bal);

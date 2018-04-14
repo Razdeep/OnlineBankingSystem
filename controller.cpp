@@ -84,12 +84,12 @@ void Controller::showCustomerLogin(){
 void Controller::showCustomerPortal(const int SESSION) {
     /***HAVING ISSUES IN THESE CODES***/
     
-    // std::vector<Customer> custVector;
-    // std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
-    // Customer customer;
-    // while(fin.read((char*)&customer,sizeof(Customer))){
-    //     custVector.push_back(customer);
-    // }
+    std::vector<Customer> custVector;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    Customer customer;
+    while(fin.read((char*)&customer,sizeof(Customer))){
+        custVector.push_back(customer);
+    }
 
     // std::cout<<"1. View Balance"<<std::endl;
     // std::cout<<"2. View Transactions"<<std::endl;

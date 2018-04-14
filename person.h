@@ -32,11 +32,12 @@ class Person{
     long int phone;
     TimeStamp dob;
     char pass[30];
+    // std::string pass;
     
     public:
     Person(){}
-    // Person(int ID,std::string name,std::string address,long int phone, TimeStamp dob):
-    // ID(ID),phone(phone),dob(dob),name(name),address(address){};
+    // Person(int ID,std::string name,std::string address,long int phone, TimeStamp dob,std::string pass):
+    // ID(ID),phone(phone),dob(dob),name(name),address(address),pass(pass){};
     Person(int ID,const char* name,const char* address,long int phone, TimeStamp dob,const char* pass):
         ID(ID),phone(phone),dob(dob){
         strcpy(this->name,name);
@@ -53,5 +54,6 @@ class Person{
     const char* getPass() const{
         return this->pass;
     }
+    
 };
 #endif

@@ -27,8 +27,8 @@ class Customer:public Person{
 
     public:
     Customer():Person(){}
-    // Customer(int ID,std::string name,std::string address,long int phone, TimeStamp dob,float balance):
-    // Person(ID,name,address,phone,dob),balance(balance){};
+    // Customer(int ID,std::string name,std::string address,long int phone, TimeStamp dob,std::string pass,float balance):
+    // Person(ID,name,address,phone,dob,pass),balance(balance){};
     Customer(int ID,const char* name,const char* address,long int phone, TimeStamp dob,const char* pass,float balance):
     Person(ID,name,address,phone,dob,pass),balance(balance){};
     
