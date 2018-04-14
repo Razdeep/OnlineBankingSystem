@@ -34,6 +34,5 @@ class Customer:public Person{
     
     void showDetails() const;
     // void setValues();
-
 };
 #endif

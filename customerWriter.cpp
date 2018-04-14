@@ -6,8 +6,8 @@
 using namespace std;
 int main()
 {
-    fstream fout("customer.txt",ios::binary|ios::out|ios::app);
-    // fstream fout("customer.txt",ios::binary|ios::trunc);
+    // fstream fout("customer.txt",ios::binary|ios::out|ios::app);
+    fstream fout("customer.txt",ios::binary|ios::trunc|ios::out);
 
     TimeStamp ts(21,7,98);
     // Customer customer(1,"Rajdeep","Kolkata",9674810029,TimeStamp(21,7,98),(float)25000);

@@ -20,8 +20,8 @@
 #include"credential.h"
 #include"customer.h"
 #include<iostream>
-#include<vector>
 #include<fstream>
+#include<vector>
 void Controller:: showBanner(){
     //@TODO
 }
@@ -44,55 +44,71 @@ void Controller::showMenu()
     }
 }
 void Controller::showCustomerLogin(){
-    using namespace std;
     Credential credTemp;
     Customer cust;
-    vector<Credential> credVector;
-    fstream fin("customer.txt",ios::binary|ios::in);
+    std::vector<Credential> credVector;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
     while(fin.read((char*)&cust,sizeof(Customer))){
         credTemp.setID(cust.getID());
         credTemp.setPass(cust.getPass());
+        credVector.push_back(credTemp);
     }
+    fin.close();
     int id;
-    // string pass;
     char pass[30];
-    cout<<"Login ID: ";
-    cin>>id;
-    cout<<"Password: ";
-    cin>>pass;
+    std::cout<<"Login ID: ";
+    std::cin>>id;
+    std::cout<<"Password: ";
+    std::cin>>pass;
     Credential userCredential(id,pass);
-    Credential originalCredential(123,"raj");
-    //A VECTOR TO BE LOADED FROM FILE AND TO BE MATCHED WITH THE CREDENTIAL
-
-    if(userCredential==originalCredential)
+    bool SUCCESS=false;
+    int SESSION=-1;
+    for(std::vector<Credential>::iterator itr=credVector.begin(); itr!=credVector.end(); ++itr)
     {
-        cout<<"Authentication successful"<<endl;
-        // @TODO LINK TO showCustomerPortal()
+        if(userCredential==*itr)
+        {
+            std::cout<<"Authentication successful"<<std::endl;
+            SUCCESS=true;
+            SESSION=userCredential.ID;
+            showCustomerPortal(SESSION);
+        }
     }
-    else{
-        cout<<"Authentication Unsuccessful"<<endl;
+    if(!SUCCESS)
+    {
+        std::cout<<"Authentication unsuccessful"<<std::endl;
     }
 }
-void Controller::showCustomerPortal() {
-    using namespace std;
-    cout<<"1. View Balance"<<endl;
-    cout<<"2. View Transactions"<<endl;
-    cout<<"3. Change Password"<<endl;
-    int ch;
-    cin>>ch;
-    switch(ch)
-    {
-        case 1:
 
-        break;
-        case 2:
 
-        break;
-        case 3:
 
-        break;
+void Controller::showCustomerPortal(const int SESSION) {
+    /***HAVING ISSUES IN THESE CODES***/
+    
+    // std::vector<Customer> custVector;
+    // std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    // Customer customer;
+    // while(fin.read((char*)&customer,sizeof(Customer))){
+    //     custVector.push_back(customer);
+    // }
 
-        default:
-        cout<<"Invalid Option"<<endl;
-    }
+    // std::cout<<"1. View Balance"<<std::endl;
+    // std::cout<<"2. View Transactions"<<std::endl;
+    // std::cout<<"3. Change Password"<<std::endl;
+    // int ch;
+    // std::cin>>ch;
+    // switch(ch)
+    // {
+    //     case 1:
+    //     // showBalance(custVector,SESSION);    
+    //     break;
+    //     case 2:
+
+    //     break;
+    //     case 3:
+
+    //     break;
+
+    //     default:
+    //     std::cout<<"Invalid Option"<<std::endl;
+    // }
 }

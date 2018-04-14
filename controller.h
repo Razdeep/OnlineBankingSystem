@@ -14,7 +14,8 @@
 *   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
 *   DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
 *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
-
+#include<iostream>
+#include"customer.h"
 #ifndef __CONTROLLER_H
 #define __CONTROLLER_H
 class Controller{
@@ -22,9 +23,10 @@ class Controller{
     static void showBanner(); // @TODO
     static void showMenu();
     static void showCustomerLogin();
-    static void showCustomerPortal();
+    static void showCustomerPortal(const int SESSION);
     static void showEmployeePortal();
     static void showCredits();
+
 };
 
 #endif

@@ -23,6 +23,7 @@ int main()
         while(fin.read((char*)&customer,sizeof(customer)))
         {
             customer.showDetails();
+            cout<<customer.getPass()<<endl<<endl;
         }
     }
     
