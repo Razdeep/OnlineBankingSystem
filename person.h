@@ -45,6 +45,13 @@ class Person{
     };
     virtual void showDetails() const=0;
     //MAKING THIS CLASS AN ABSTRACT CLASS
+
     
+    int getID() const{
+        return this->ID;
+    }
+    const char* getPass() const{
+        return this->pass;
+    }
 };
 #endif

@@ -18,8 +18,10 @@
 
 #include"controller.h"
 #include"credential.h"
+#include"customer.h"
 #include<iostream>
-
+#include<vector>
+#include<fstream>
 void Controller:: showBanner(){
     //@TODO
 }
@@ -43,6 +45,14 @@ void Controller::showMenu()
 }
 void Controller::showCustomerLogin(){
     using namespace std;
+    Credential credTemp;
+    Customer cust;
+    vector<Credential> credVector;
+    fstream fin("customer.txt",ios::binary|ios::in);
+    while(fin.read((char*)&cust,sizeof(Customer))){
+        credTemp.setID(cust.getID());
+        credTemp.setPass(cust.getPass());
+    }
     int id;
     // string pass;
     char pass[30];
@@ -53,6 +63,7 @@ void Controller::showCustomerLogin(){
     Credential userCredential(id,pass);
     Credential originalCredential(123,"raj");
     //A VECTOR TO BE LOADED FROM FILE AND TO BE MATCHED WITH THE CREDENTIAL
+
     if(userCredential==originalCredential)
     {
         cout<<"Authentication successful"<<endl;
