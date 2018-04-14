@@ -91,24 +91,24 @@ void Controller::showCustomerPortal(const int SESSION) {
         custVector.push_back(customer);
     }
 
-    // std::cout<<"1. View Balance"<<std::endl;
-    // std::cout<<"2. View Transactions"<<std::endl;
-    // std::cout<<"3. Change Password"<<std::endl;
-    // int ch;
-    // std::cin>>ch;
-    // switch(ch)
-    // {
-    //     case 1:
-    //     // showBalance(custVector,SESSION);    
-    //     break;
-    //     case 2:
+    std::cout<<"1. View Balance"<<std::endl;
+    std::cout<<"2. View Transactions"<<std::endl;
+    std::cout<<"3. Change Password"<<std::endl;
+    int ch;
+    std::cin>>ch;
+    switch(ch)
+    {
+        case 1:
+        // showBalance(custVector,SESSION);    
+        break;
+        case 2:
 
-    //     break;
-    //     case 3:
+        break;
+        case 3:
 
-    //     break;
+        break;
 
-    //     default:
-    //     std::cout<<"Invalid Option"<<std::endl;
-    // }
+        default:
+        std::cout<<"Invalid Option"<<std::endl;
+    }
 }

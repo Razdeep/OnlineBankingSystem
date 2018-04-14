@@ -44,6 +44,16 @@ class Person{
         strcpy(this->address,address);
         strcpy(this->pass,pass);
     };
+    //COPY CONSTRUCTOR MUST BE CREATED INORDER TO MAKE VECTOR WORK
+    Person(const Person& other){
+        this->ID=other.ID;
+        strcpy(this->name,other.name);
+        strcpy(this->address,other.address);
+        this->phone=other.phone;
+        this->dob=other.dob;
+        strcpy(this->pass,other.pass);
+    }
+
     virtual void showDetails() const=0;
     //MAKING THIS CLASS AN ABSTRACT CLASS
 

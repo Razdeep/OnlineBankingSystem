@@ -32,6 +32,11 @@ class Customer:public Person{
     Customer(int ID,const char* name,const char* address,long int phone, TimeStamp dob,const char* pass,float balance):
     Person(ID,name,address,phone,dob,pass),balance(balance){};
     
+    //COPY CONSTRUCTOR MUST BE PROVIDED, ELSE VECTOR WONT WORK
+    Customer(const Customer& other):Person(other){
+        this->balance=other.balance;
+    }
+
     void showDetails() const;
     // void setValues();
 };
