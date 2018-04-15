@@ -20,7 +20,7 @@ int main()
         Controller::displayCustomers();
         break;
         case 4:
-        cout<<"NOT WORKING"<<endl;
+        Controller::deleteCustomer();
         break;
         default:
         cout<<"INVALID OPTION"<<endl;

@@ -27,7 +27,7 @@ class Controller{
     static void showCustomerLogin();
     static void showCustomerPortal(const int SESSION);
     static void showEmployeeLogin();
-    static void showEmployeePortal();
+    static void showEmployeePortal(const int SESSION);
     static void showAdmin();
     static void showCredits();
     static void addCustomer();

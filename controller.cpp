@@ -152,45 +152,98 @@ void Controller::showCustomerPortal(const int SESSION) {
 }
 void Controller::showEmployeeLogin()
 {
-    // @TODO
-    // Credential credTemp;
-    // Employee emp;
-    // std::vector<Credential> credVector;
-    // std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
-    // while(fin.read((char*)&cust,sizeof(Customer))){
-    //     credTemp.setID(cust.getID());
-    //     credTemp.setPass(cust.getPass());
-    //     credVector.push_back(credTemp);
-    // }
-    // fin.close();
-    // int id;
-    // char pass[30];
-    // std::cout<<"Login ID: ";
-    // std::cin>>id;
-    // std::cout<<"Password: ";
-    // std::cin>>pass;
-    // Credential userCredential(id,pass);
-    // bool SUCCESS=false;
-    // int SESSION=-1;
-    // for(std::vector<Credential>::iterator itr=credVector.begin(); itr!=credVector.end(); ++itr)
-    // {
-    //     if(userCredential==*itr)
-    //     {
-    //         std::cout<<"Authentication successful"<<std::endl;
-    //         SUCCESS=true;
-    //         SESSION=userCredential.ID;
-    //         showCustomerPortal(SESSION);
-    //     }
-    // }
-    // if(!SUCCESS)
-    // {
-    //     std::cout<<"Authentication unsuccessful"<<std::endl;
-    // }
+    Credential credTemp;
+    Employee emp;
+    std::vector<Credential> credVector;
+    std::fstream fin("employee.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&emp,sizeof(Employee))){
+        credTemp.setID(emp.getID());
+        credTemp.setPass(emp.getPass());
+        credVector.push_back(credTemp);
+    }
+    fin.close();
+    int id;
+    char pass[30];
+    std::cout<<"Login ID: ";
+    std::cin>>id;
+    std::cout<<"Password: ";
+    std::cin>>pass;
+    Credential userCredential(id,pass);
+    bool SUCCESS=false;
+    int SESSION=-1;
+    for(std::vector<Credential>::iterator itr=credVector.begin(); itr!=credVector.end(); ++itr)
+    {
+        if(userCredential==*itr)
+        {
+            std::cout<<"Authentication successful"<<std::endl;
+            SUCCESS=true;
+            SESSION=userCredential.ID;
+            showEmployeePortal(SESSION);
+        }
+    }
+    if(!SUCCESS)
+    {
+        std::cout<<"Authentication unsuccessful"<<std::endl;
+    }
+}
+void Controller::showEmployeePortal(const int SESSION)
+{
+    // ---------------------------
+    // DOING
+    // ------------------------
+    std::cout<<"1. Add Customer"<<std::endl;
+    std::cout<<"2. Modify Customer"<<std::endl;
+    std::cout<<"3. View Customers(DEFAULT CHRONOLOGICAL)"<<std::endl;
+    std::cout<<"4. View Customers by"<<std::endl;
+    std::cout<<"5. Search Customer"<<std::endl;
+    int ch;
+    std::cin>>ch;
+    switch(ch)
+    {
+        case 1:
+        Controller::addCustomer();
+        break;
+        case 2:
+        Controller::modifyCustomer();
+        break;
+        case 3:
+        Controller::displayCustomers();
+        break;
+        case 4:
+        std::cout<<"@TODO call Rajdeep to implement this"<<std::endl;
+        break;
+        case 5:
+
+        break;
+        default:
+        std::cout<<"Invalid Option"<<std::endl;
+    }
 }
 void Controller::showAdmin()
 {
-    // @TODO
-    std::cout<<"@TODO RAJDEEP"<<std::endl;
+    Rajdeep rajdeep;
+    rajdeep.drawLine(50);
+    std::cout<<"\tADMIN PORTAL TESTER"<<std::endl;
+    rajdeep.drawLine(50);
+    std::cout<<"1. Add Employee\n2. Modify Employee\n3. Display Employees\n4. Delete Employees\n";
+    int ch;
+    std::cin>>ch;
+    switch(ch){
+        case 1:
+        Controller::addEmployee();
+        break;
+        case 2:
+        Controller::modifyEmployee();
+        break;
+        case 3:
+        Controller::displayEmployees();
+        break;
+        case 4:
+        Controller::deleteEmployee();
+        break;
+        default:
+        std::cout<<"Invalid Choice"<<std::endl;
+    }
 }
 void Controller::showCredits()
 {
@@ -346,7 +399,29 @@ void Controller::displayCustomers()
     std::cout<<std::endl;
 }
 void Controller::deleteCustomer(){
-    // @TODO
+    // ------------------------------------------------------
+    //              PROBLEM TO BE FIXED
+    // ------------------------------------------------------
+    Rajdeep rajdeep;
+    std::vector<Customer> custVector;
+    Customer cust;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&cust,sizeof(Customer)))
+    {
+        custVector.push_back(cust);
+    }
+    fin.close();
+    int id;
+    std::cout<<"Enter the ID of the employee to be deleted ";
+    std::cin>>id;
+    for(int i=0;i<custVector.size();i++)
+    {
+        if(custVector[i].getID()==id)
+        {
+            std::cout<<"@DEBUG POSTION "<<i;
+            // custVector.erase(i);
+        }
+    }
 }
 void Controller::addEmployee()
 {
@@ -404,7 +479,69 @@ void Controller::addEmployee()
 }
 void Controller::modifyEmployee()
 {
-    // @TODO
+    Rajdeep rajdeep;
+    std::vector<Employee> empVector;
+    Employee emp;
+    std::fstream fin("employee.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&emp,sizeof(Employee)))
+    {
+        empVector.push_back(emp);
+    }
+    fin.close();
+
+    displayEmployees();
+
+    int id;
+    std::cout<<"Enter the ID of the employee to be modified ";
+    std::cin>>id;
+    // // CHECKING WHETHER ENTERED VALUE EXIST
+    bool flag=false;
+    int count=0;
+    for(std::vector<Employee>::iterator itr=empVector.begin();
+    itr!=empVector.end();++itr,++count)
+    {
+        if(itr->getID()==id)
+        {
+            flag=true;
+            break;
+        }
+    }
+    if(flag)
+    {
+        char name[30],address[30],pass[30];
+        long int phone;
+        TimeStamp dob;
+        float salary;
+        std::cout<<"Enter Employee Name; "<<std::endl;
+        std::cin.ignore();
+        std::cin.getline(name,30);
+        std::cout<<"Enter address "<<std::endl;
+        std::cin.getline(address,30);
+        std::cout<<"Enter phone "<<std::endl;
+        std::cin>>phone;
+        std::cout<<"Enter Date of Birth (DD MM YYYY) [SEPARATED BY SPACES] ";
+        int dd,mm,yy;
+        std::cin>>dd>>mm>>yy;
+        dob.set(dd,mm,yy);
+        std::cout<<"Enter Password ";
+        std::cin.ignore();
+        std::cin.getline(pass,30);
+        std::cout<<"Enter Salary ";
+        std::cin>>salary;
+        Employee emp(id,name,address,phone,dob,pass,salary);
+        empVector.at(count)=emp;
+
+        //WRITING CUSTVECTOR TO THE EMPLOYEE.TXT
+        std::fstream fout("employee.txt",std::ios::binary|std::ios::out|std::ios::trunc);
+        for(int i=0;i<empVector.size();i++)
+        {
+            fout.write((char*)&empVector.at(i),sizeof(Employee));
+        }
+        fout.close();
+    }
+    else{
+        std::cout<<"Customer account that is to be modified doesnot exist"<<std::endl;
+    }
 }
 void Controller::displayEmployees()
 {
