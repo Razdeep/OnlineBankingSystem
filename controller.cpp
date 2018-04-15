@@ -221,10 +221,72 @@ void Controller::addCustomer()
         std::cout<<"Operation unsuccessful. Record with similar ID already exists."<<std::endl;
     }
 }
-void Controller::updateCustomer()
+void Controller::modifyCustomer()
 {
+    Rajdeep rajdeep;
+    std::vector<Customer> custVector;
+    Customer cust;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&cust,sizeof(Customer)))
+    {
+        custVector.push_back(cust);
+    }
+    fin.close();
+
     displayCustomers();
-    // VECTOR REPLACEMENT TO BE DONE
+
+    int id;
+    std::cout<<"Enter the ID of the customer to be modified ";
+    std::cin>>id;
+    // CHECKING WHETHER ENTERED VALUE EXIST
+    bool flag=false;
+    int count=0;
+    for(std::vector<Customer>::iterator itr=custVector.begin();
+    itr!=custVector.end();++itr,++count)
+    {
+        if(itr->getID()==id)
+        {
+            flag=true;
+            break;
+        }
+    }
+    if(flag)
+    {
+        char name[30],address[30],pass[30];
+        long int phone;
+        TimeStamp dob;
+        float bal;
+        std::cout<<"Enter Customer Name; "<<std::endl;
+        std::cin.ignore();
+        std::cin.getline(name,30);
+        std::cout<<"Enter address "<<std::endl;
+        std::cin.ignore();
+        std::cin.getline(address,30);
+        std::cout<<"Enter phone "<<std::endl;
+        std::cin>>phone;
+        std::cout<<"Enter Date of Birth (DD MM YYYY) [SEPARATED BY SPACES] ";
+        int dd,mm,yy;
+        std::cin>>dd>>mm>>yy;
+        dob.set(dd,mm,yy);
+        std::cout<<"Enter Password ";
+        std::cin.ignore();
+        std::cin.getline(pass,30);
+        std::cout<<"Enter Balance ";
+        std::cin>>bal;
+        Customer cust(id,name,address,phone,dob,pass,bal);
+        custVector.at(count)=cust;
+
+        //WRITING CUSTVECTOR TO THE CUSTOMER.TXT
+        std::fstream fout("customer.txt",std::ios::binary|std::ios::out|std::ios::trunc);
+        for(int i=0;i<custVector.size();i++)
+        {
+            fout.write((char*)&custVector.at(i),sizeof(Customer));
+        }
+        fout.close();
+    }
+    else{
+        std::cout<<"Customer account that is to be modified doesnot exist"<<std::endl;
+    }
 }
 void Controller::displayCustomers()
 {
