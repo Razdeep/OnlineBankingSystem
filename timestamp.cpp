@@ -16,6 +16,8 @@
 *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include<iostream>
+#include<sstream>
+#include<cstring>
 #include"timestamp.h"
 TimeStamp::TimeStamp(const TimeStamp &other){
     date=other.date;
@@ -23,10 +25,9 @@ TimeStamp::TimeStamp(const TimeStamp &other){
     year=other.year;
 }
 std::string TimeStamp::toString() const{
-    // IOMANIP TO IMPLEMENTED HERE
-    std::cout<<date<<"/"<<month<<"/"<<year<<std::endl;
-    //STRINGBUILDER TO BE IMPLEMENTED
-    return std::string("RRC: BUILT STRING TO BE RETURNED FROM HERE");
+    std::stringstream ss;
+    ss<<date<<"/"<<month<<"/"<<year;
+    return ss.str();
 }
 int TimeStamp::timeWeight() const{
     return ((year*10000)+(month*100)+date);
