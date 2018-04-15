@@ -34,6 +34,10 @@ class Controller{
     static void modifyCustomer();
     static void displayCustomers();
     static void deleteCustomer();
+    static void addEmployee();
+    static void modifyEmployee();
+    static void displayEmployees();
+    static void deleteEmployee();
 };
 
 #endif

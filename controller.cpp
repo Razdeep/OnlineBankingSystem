@@ -19,6 +19,7 @@
 #include"controller.h"
 #include"credential.h"
 #include"customer.h"
+#include"employee.h"
 #include"rajdeep.h"
 #include<iostream>
 #include<fstream>
@@ -152,7 +153,39 @@ void Controller::showCustomerPortal(const int SESSION) {
 void Controller::showEmployeeLogin()
 {
     // @TODO
-    std::cout<<"@TODO RAJDEEP"<<std::endl;
+    // Credential credTemp;
+    // Employee emp;
+    // std::vector<Credential> credVector;
+    // std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    // while(fin.read((char*)&cust,sizeof(Customer))){
+    //     credTemp.setID(cust.getID());
+    //     credTemp.setPass(cust.getPass());
+    //     credVector.push_back(credTemp);
+    // }
+    // fin.close();
+    // int id;
+    // char pass[30];
+    // std::cout<<"Login ID: ";
+    // std::cin>>id;
+    // std::cout<<"Password: ";
+    // std::cin>>pass;
+    // Credential userCredential(id,pass);
+    // bool SUCCESS=false;
+    // int SESSION=-1;
+    // for(std::vector<Credential>::iterator itr=credVector.begin(); itr!=credVector.end(); ++itr)
+    // {
+    //     if(userCredential==*itr)
+    //     {
+    //         std::cout<<"Authentication successful"<<std::endl;
+    //         SUCCESS=true;
+    //         SESSION=userCredential.ID;
+    //         showCustomerPortal(SESSION);
+    //     }
+    // }
+    // if(!SUCCESS)
+    // {
+    //     std::cout<<"Authentication unsuccessful"<<std::endl;
+    // }
 }
 void Controller::showAdmin()
 {
@@ -199,7 +232,7 @@ void Controller::addCustomer()
         std::cin.ignore();
         std::cin.getline(name,30);
         std::cout<<"Enter address "<<std::endl;
-        std::cin.ignore();
+        // std::cin.ignore();
         std::cin.getline(address,30);
         std::cout<<"Enter phone "<<std::endl;
         std::cin>>phone;
@@ -311,4 +344,93 @@ void Controller::displayCustomers()
     }
     rajdeep.drawLine(100);
     std::cout<<std::endl;
+}
+void Controller::deleteCustomer(){
+    // @TODO
+}
+void Controller::addEmployee()
+{
+    std::vector<Employee> empVector;
+    std::fstream fin("employee.txt",std::ios::binary|std::ios::in);
+    Employee employee;
+    while(fin.read((char*)&employee,sizeof(Employee))){
+         empVector.push_back(employee);
+    }
+    fin.close();
+    int id;
+    std::cout<<"Enter Employee ID ";
+    std::cin>>id;
+    bool flag=true;
+    // // CHECKING WHETHER ID IS ALREADY EXISTING IN OUR DATABASE
+    for(std::vector<Employee>::iterator itr=empVector.begin(); itr!=empVector.end();++itr)
+    {
+        if(itr->getID()==id)
+        {
+            flag=false;
+            break;
+        }
+    }
+    if(flag) // NO SAME EXISTING ID, SO, NO ISSUE TO SAVE
+    {
+    
+        char name[30],address[30],pass[30];
+        long int phone;
+        TimeStamp dob;
+        float salary;
+        std::cout<<"Enter Employee Name: "<<std::endl;
+        std::cin.ignore();
+        std::cin.getline(name,30);
+        std::cout<<"Enter address "<<std::endl;
+        std::cin.getline(address,30);
+        std::cout<<"Enter phone "<<std::endl;
+        std::cin>>phone;
+        std::cout<<"Enter Date of Birth (DD MM YYYY) [SEPARATED BY SPACES] ";
+        int dd,mm,yy;
+        std::cin>>dd>>mm>>yy;
+        dob.set(dd,mm,yy);
+        std::cout<<"Enter Password ";
+        std::cin.ignore();
+        std::cin.getline(pass,30);
+        std::cout<<"Enter Salary ";
+        std::cin>>salary;
+        Employee emp(id,name,address,phone,dob,pass,salary);
+        std::fstream fout("employee.txt",std::ios::binary|std::ios::out|std::ios::app);
+        fout.write((char*)&emp,sizeof(Employee));
+        fout.close();
+    }
+    else{
+        std::cout<<"Operation unsuccessful. Record with similar ID already exists."<<std::endl;
+    }
+}
+void Controller::modifyEmployee()
+{
+    // @TODO
+}
+void Controller::displayEmployees()
+{
+    Rajdeep rajdeep;
+    std::vector<Employee> empVector;
+    Employee emp;
+    std::fstream fin("employee.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&emp,sizeof(Employee)))
+    {
+        empVector.push_back(emp);
+    }
+    fin.close();
+    rajdeep.drawLine(100);
+    std::cout<<"ID\tNAME\tADDRESS\tPHONE\t\tDOB\tPASSWORD\tSALARY"<<std::endl;
+    rajdeep.drawLine(100);
+    for(std::vector<Employee>::iterator itr=empVector.begin();
+    itr!=empVector.end();++itr)
+    {
+        std::cout<<itr->getID()<<"\t"<<itr->getName()<<"\t"<<itr->getAddress()<<"\t"
+        <<itr->getPhone()<<"\t"<<(itr->getDob()).toString()<<"\t"<<itr->getPass()<<
+        "\t"<<itr->getSalary()<<std::endl;
+    }
+    rajdeep.drawLine(100);
+    std::cout<<std::endl;
+}
+void Controller::deleteEmployee()
+{
+    // @TODO
 }
