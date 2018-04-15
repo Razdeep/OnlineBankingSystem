@@ -26,7 +26,7 @@ class Customer:public Person{
     protected:
 
     public:
-    Customer():Person(){}
+    Customer():Person(),balance(0){}
     // Customer(int ID,std::string name,std::string address,long int phone, TimeStamp dob,std::string pass,float balance):
     // Person(ID,name,address,phone,dob,pass),balance(balance){};
     Customer(int ID,const char* name,const char* address,long int phone, TimeStamp dob,const char* pass,float balance):

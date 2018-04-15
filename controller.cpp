@@ -22,6 +22,7 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
+#include<cstdlib>
 void Controller:: showBanner(){
     //@TODO
 }
@@ -30,8 +31,9 @@ void Controller::showMenu()
     int ch;
     std::cout<<"1. Customer Login"<<std::endl;
     std::cout<<"2. Employee Login"<<std::endl;
-    std::cout<<"3. Credits"<<std::endl;
-    std::cout<<"4. Exit"<<std::endl;
+    std::cout<<"3. Admin (id: raj, pass: raj)"<<std::endl;
+    std::cout<<"4. Credits"<<std::endl;
+    std::cout<<"5. Exit"<<std::endl;
 
     std::cout<<std::endl<<std::endl;
     std::cout<<"\tEnter choice (1-4) ";
@@ -41,6 +43,28 @@ void Controller::showMenu()
         case 1:
         showCustomerLogin();
         break;
+        case 2:
+        showEmployeeLogin();
+        break;
+        case 3:
+        {
+            std::string id,pass;
+            std::cout<<"Enter your ID:\t";
+            std::cin>>id;
+            std::cout<<"Enter your Password\t";
+            std::cin>>pass;
+            if(id=="raj" && pass=="raj")
+            showAdmin();
+            else std::cout<<"Invalid Password"<<std::endl;
+        }
+        break;
+        case 4:
+        showCredits();
+        break;
+        case 5:
+        exit(0);
+        default:
+        std::cout<<"Invalid Input. Try again..."<<std::endl;
     }
 }
 void Controller::showCustomerLogin(){
@@ -82,8 +106,7 @@ void Controller::showCustomerLogin(){
 
 
 void Controller::showCustomerPortal(const int SESSION) {
-    /***HAVING ISSUES IN THESE CODES***/
-    
+        
     std::vector<Customer> custVector;
     std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
     Customer customer;
@@ -99,7 +122,16 @@ void Controller::showCustomerPortal(const int SESSION) {
     switch(ch)
     {
         case 1:
-        // showBalance(custVector,SESSION);    
+        {
+            for(std::vector<Customer>::iterator itr=custVector.begin();
+            itr!=custVector.end();itr++)
+            {
+                if(itr->getID()==SESSION)
+                {
+                    itr->showDetails();
+                }
+            }
+        }
         break;
         case 2:
 
@@ -111,4 +143,75 @@ void Controller::showCustomerPortal(const int SESSION) {
         default:
         std::cout<<"Invalid Option"<<std::endl;
     }
+}
+
+void Controller::addCustomer()
+{
+    std::vector<Customer> custVector;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    Customer customer;
+    while(fin.read((char*)&customer,sizeof(Customer))){
+        custVector.push_back(customer);
+    }
+    fin.close();
+    int id;
+    std::cout<<"Enter Customer ID ";
+    std::cin>>id;
+    bool flag=true;
+    // CHECKING WHETHER ID IS ALREADY EXISTING IN OUR DATABASE
+    for(std::vector<Customer>::iterator itr=custVector.begin(); itr!=custVector.end();++itr)
+    {
+        if(itr->getID()==id)
+        {
+            flag=false;
+            break;
+        }
+    }
+    if(flag) // NO SAME EXISTING ID, SO, NO ISSUE TO SAVE
+    {
+    
+        char name[30],address[30],pass[30];
+        long int phone;
+        TimeStamp dob;
+        float bal;
+        std::cout<<"Enter Customer Name; "<<std::endl;
+        std::cin.ignore();
+        std::cin.getline(name,30);
+        std::cout<<"Enter address "<<std::endl;
+        std::cin.ignore();
+        std::cin.getline(address,30);
+        std::cout<<"Enter phone "<<std::endl;
+        std::cin>>phone;
+        std::cout<<"Enter Date of Birth (DD MM YYYY) [SEPARATED BY SPACES] ";
+        int dd,mm,yy;
+        std::cin>>dd>>mm>>yy;
+        dob.set(dd,mm,yy);
+        std::cout<<"Enter Password ";
+        std::cin.ignore();
+        std::cin.getline(pass,30);
+        std::cout<<"Enter Balance ";
+        std::cin>>bal;
+        Customer cust(id,name,address,phone,dob,pass,bal);
+        std::fstream fout("customer.txt",std::ios::binary|std::ios::out|std::ios::app);
+        fout.write((char*)&cust,sizeof(Customer));
+        fout.close();
+    }
+    else{
+        std::cout<<"Operation unsuccessful. Record with similar ID already exists."<<std::endl;
+    }
+}
+void Controller::showEmployeeLogin()
+{
+    // @TODO
+    std::cout<<"@TODO RAJDEEP"<<std::endl;
+}
+void Controller::showAdmin()
+{
+    // @TODO
+    std::cout<<"@TODO RAJDEEP"<<std::endl;
+}
+void Controller::showCredits()
+{
+     // @TODO
+    std::cout<<"@TODO RAJDEEP"<<std::endl;
 }

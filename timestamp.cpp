@@ -46,3 +46,10 @@ bool TimeStamp::operator==(const TimeStamp& other) const{
     return true;
     else return false;
 }
+
+void TimeStamp::set(unsigned int date,unsigned int month,unsigned int year)
+{
+    this->date=date;
+    this->month=month;
+    this->year=year;
+}

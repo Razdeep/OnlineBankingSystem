@@ -26,9 +26,11 @@ class Controller{
     static void showMenu();
     static void showCustomerLogin();
     static void showCustomerPortal(const int SESSION);
+    static void showEmployeeLogin();
     static void showEmployeePortal();
+    static void showAdmin();
     static void showCredits();
-
+    static void addCustomer();
 };
 
 #endif

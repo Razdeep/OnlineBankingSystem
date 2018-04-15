@@ -16,3 +16,12 @@
 *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include"person.h"
+
+Person::Person(const Person& other){
+    this->ID=other.ID;
+    strcpy(this->name,other.name);
+    strcpy(this->address,other.address);
+    this->phone=other.phone;
+    this->dob=other.dob;
+    strcpy(this->pass,other.pass);
+}

@@ -32,7 +32,7 @@ class TimeStamp{
 
     //Copy Contructor
     TimeStamp(TimeStamp &other);
-
+    void set(unsigned int,unsigned int, unsigned int);
     std::string toString() const;   // @TODO
 
     bool operator>(const TimeStamp&) const; // @DONE
