@@ -50,13 +50,13 @@ class Person{
     virtual void showDetails() const=0;
     //MAKING THIS CLASS AN ABSTRACT CLASS
 
-    
-    int getID() const{
-        return this->ID;
-    }
-    const char* getPass() const{
-        return this->pass;
-    }
+    //BUNCH OF GETTERS
+    int getID() const;
+    const char* getName() const;
+    const char* getAddress() const;
+    long int getPhone() const;
+    TimeStamp getDob() const;
+    const char* getPass() const;
     
 };
 #endif

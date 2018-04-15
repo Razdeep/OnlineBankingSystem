@@ -31,7 +31,7 @@ class TimeStamp{
     TimeStamp(unsigned int date, unsigned int month,unsigned int year):date(date),month(month),year(year){};
 
     //Copy Contructor
-    TimeStamp(TimeStamp &other);
+    TimeStamp(const TimeStamp &other);
     void set(unsigned int,unsigned int, unsigned int);
     std::string toString() const;   // @TODO
 

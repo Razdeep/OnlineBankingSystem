@@ -31,6 +31,9 @@ class Controller{
     static void showAdmin();
     static void showCredits();
     static void addCustomer();
+    static void updateCustomer();
+    static void displayCustomers();
+    static void deleteCustomer();
 };
 
 #endif

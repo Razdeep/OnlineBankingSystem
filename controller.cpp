@@ -19,6 +19,7 @@
 #include"controller.h"
 #include"credential.h"
 #include"customer.h"
+#include"rajdeep.h"
 #include<iostream>
 #include<fstream>
 #include<vector>
@@ -134,16 +135,36 @@ void Controller::showCustomerPortal(const int SESSION) {
         }
         break;
         case 2:
-
+        {
+            std::cout<<"THIS PART IS NOT IMPLEMENTED YET. @TODO"<<std::endl;
+        }
         break;
         case 3:
-
+        {
+            std::cout<<"THIS PART IS NOT IMPLEMENTED YET. @TODO"<<std::endl;
+        }
         break;
 
         default:
         std::cout<<"Invalid Option"<<std::endl;
     }
 }
+void Controller::showEmployeeLogin()
+{
+    // @TODO
+    std::cout<<"@TODO RAJDEEP"<<std::endl;
+}
+void Controller::showAdmin()
+{
+    // @TODO
+    std::cout<<"@TODO RAJDEEP"<<std::endl;
+}
+void Controller::showCredits()
+{
+     // @TODO
+    std::cout<<"@TODO RAJDEEP"<<std::endl;
+}
+
 
 void Controller::addCustomer()
 {
@@ -200,18 +221,32 @@ void Controller::addCustomer()
         std::cout<<"Operation unsuccessful. Record with similar ID already exists."<<std::endl;
     }
 }
-void Controller::showEmployeeLogin()
+void Controller::updateCustomer()
 {
-    // @TODO
-    std::cout<<"@TODO RAJDEEP"<<std::endl;
+    displayCustomers();
+    // VECTOR REPLACEMENT TO BE DONE
 }
-void Controller::showAdmin()
+void Controller::displayCustomers()
 {
-    // @TODO
-    std::cout<<"@TODO RAJDEEP"<<std::endl;
-}
-void Controller::showCredits()
-{
-     // @TODO
-    std::cout<<"@TODO RAJDEEP"<<std::endl;
+    Rajdeep rajdeep;
+    std::vector<Customer> custVector;
+    Customer cust;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&cust,sizeof(Customer)))
+    {
+        custVector.push_back(cust);
+    }
+    fin.close();
+    rajdeep.drawLine(100);
+    std::cout<<"ID\tNAME\tADDRESS\tPHONE\t\tDOB\tPASSWORD\tBALANCE"<<std::endl;
+    rajdeep.drawLine(100);
+    for(std::vector<Customer>::iterator itr=custVector.begin();
+    itr!=custVector.end();++itr)
+    {
+        std::cout<<itr->getID()<<"\t"<<itr->getName()<<"\t"<<itr->getAddress()<<"\t"
+        <<itr->getPhone()<<"\t"<<(itr->getDob()).toString()<<"\t"<<itr->getPass()<<
+        "\t"<<itr->getBalance()<<std::endl;
+    }
+    rajdeep.drawLine(100);
+    std::cout<<std::endl;
 }

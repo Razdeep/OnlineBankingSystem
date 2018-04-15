@@ -36,7 +36,7 @@ class Customer:public Person{
     Customer(const Customer& other):Person(other){
         this->balance=other.balance;
     }
-
+    float getBalance() const;
     void showDetails() const;
     // void setValues();
 };
