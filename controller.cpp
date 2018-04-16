@@ -430,9 +430,6 @@ void Controller::displayCustomers()
     std::cout<<std::endl;
 }
 void Controller::deleteCustomer(){
-    // ------------------------------------------------------
-    //              PROBLEM TO BE FIXED
-    // ------------------------------------------------------
     Rajdeep rajdeep;
     std::vector<Customer> custVector;
     Customer cust;
@@ -449,10 +446,16 @@ void Controller::deleteCustomer(){
     {
         if(custVector[i].getID()==id)
         {
-            std::cout<<"@DEBUG POSTION "<<i;
-            // custVector.erase(i);
+            custVector.erase(custVector.begin()+i);
         }
     }
+    // TRUNCATING THE CUSTVECTOR TO THE CUSTOMER.TEXT
+    std::fstream fout("customer.txt",std::ios::binary|std::ios::out|std::ios::trunc);
+    for(int i=0;i<custVector.size();++i)
+    {
+        fout.write((char*)&custVector[i],sizeof(Customer));
+    }
+    fout.close();
 }
 void Controller::addEmployee()
 {
