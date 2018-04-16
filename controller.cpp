@@ -70,84 +70,90 @@ void Controller::showMenu()
     }
 }
 void Controller::showCustomerLogin(){
-    Credential credTemp;
-    Customer cust;
-    std::vector<Credential> credVector;
-    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
-    while(fin.read((char*)&cust,sizeof(Customer))){
-        credTemp.setID(cust.getID());
-        credTemp.setPass(cust.getPass());
-        credVector.push_back(credTemp);
-    }
-    fin.close();
-    int id;
-    char pass[30];
-    std::cout<<"Login ID: ";
-    std::cin>>id;
-    std::cout<<"Password: ";
-    std::cin>>pass;
-    Credential userCredential(id,pass);
-    bool SUCCESS=false;
-    int SESSION=-1;
-    for(std::vector<Credential>::iterator itr=credVector.begin(); itr!=credVector.end(); ++itr)
-    {
-        if(userCredential==*itr)
-        {
-            std::cout<<"Authentication successful"<<std::endl;
-            SUCCESS=true;
-            SESSION=userCredential.ID;
-            showCustomerPortal(SESSION);
+        Credential credTemp;
+        Customer cust;
+        std::vector<Credential> credVector;
+        std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+        while(fin.read((char*)&cust,sizeof(Customer))){
+            credTemp.setID(cust.getID());
+            credTemp.setPass(cust.getPass());
+            credVector.push_back(credTemp);
         }
-    }
-    if(!SUCCESS)
-    {
-        std::cout<<"Authentication unsuccessful"<<std::endl;
-    }
+        fin.close();
+        int id;
+        char pass[30];
+        std::cout<<"Login ID: ";
+        std::cin>>id;
+        std::cout<<"Password: ";
+        std::cin>>pass;
+        Credential userCredential(id,pass);
+        bool SUCCESS=false;
+        int SESSION=-1;
+        for(std::vector<Credential>::iterator itr=credVector.begin(); itr!=credVector.end(); ++itr)
+        {
+            if(userCredential==*itr)
+            {
+                std::cout<<"Authentication successful"<<std::endl;
+                SUCCESS=true;
+                SESSION=userCredential.ID;
+                showCustomerPortal(SESSION);
+            }
+        }
+        if(!SUCCESS)
+        {
+            std::cout<<"Authentication unsuccessful"<<std::endl;
+        }
 }
 
 
 
 void Controller::showCustomerPortal(const int SESSION) {
-        
-    std::vector<Customer> custVector;
-    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
-    Customer customer;
-    while(fin.read((char*)&customer,sizeof(Customer))){
-        custVector.push_back(customer);
-    }
-
-    std::cout<<"1. View Balance"<<std::endl;
-    std::cout<<"2. View Transactions"<<std::endl;
-    std::cout<<"3. Change Password"<<std::endl;
-    int ch;
-    std::cin>>ch;
-    switch(ch)
+    bool running=true;
+    while(1)
     {
-        case 1:
+        std::vector<Customer> custVector;
+        std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+        Customer customer;
+        while(fin.read((char*)&customer,sizeof(Customer))){
+            custVector.push_back(customer);
+        }
+
+        std::cout<<"1. View Balance"<<std::endl;
+        std::cout<<"2. View Transactions"<<std::endl;
+        std::cout<<"3. Change Password"<<std::endl;
+        std::cout<<"4. Logout to Mainmenu"<<std::endl;
+        int ch;
+        std::cin>>ch;
+        switch(ch)
         {
-            for(std::vector<Customer>::iterator itr=custVector.begin();
-            itr!=custVector.end();itr++)
+            case 1:
             {
-                if(itr->getID()==SESSION)
+                for(std::vector<Customer>::iterator itr=custVector.begin();
+                itr!=custVector.end();itr++)
                 {
-                    itr->showDetails();
+                    if(itr->getID()==SESSION)
+                    {
+                        itr->showDetails();
+                    }
                 }
             }
+            break;
+            case 2:
+            {
+                std::cout<<"THIS PART IS NOT IMPLEMENTED YET. @TODO"<<std::endl;
+            }
+            break;
+            case 3:
+            {
+                std::cout<<"THIS PART IS NOT IMPLEMENTED YET. @TODO"<<std::endl;
+            }
+            break;
+            case 4:
+            running=false;
+            break;
+            default:
+            std::cout<<"Invalid Option"<<std::endl;
         }
-        break;
-        case 2:
-        {
-            std::cout<<"THIS PART IS NOT IMPLEMENTED YET. @TODO"<<std::endl;
-        }
-        break;
-        case 3:
-        {
-            std::cout<<"THIS PART IS NOT IMPLEMENTED YET. @TODO"<<std::endl;
-        }
-        break;
-
-        default:
-        std::cout<<"Invalid Option"<<std::endl;
     }
 }
 void Controller::showEmployeeLogin()
@@ -440,7 +446,7 @@ void Controller::deleteCustomer(){
     }
     fin.close();
     int id;
-    std::cout<<"Enter the ID of the employee to be deleted ";
+    std::cout<<"Enter the ID of the customer to be deleted ";
     std::cin>>id;
     for(int i=0;i<custVector.size();i++)
     {
@@ -604,4 +610,38 @@ void Controller::displayEmployees()
 void Controller::deleteEmployee()
 {
     // @TODO
+    Rajdeep rajdeep;
+    std::vector<Employee> empVector;
+    Employee emp;
+    std::fstream fin("employee.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&emp,sizeof(Employee)))
+    {
+        empVector.push_back(emp);
+    }
+    fin.close();
+    int id;
+    std::cout<<"Enter the ID of the employee to be deleted ";
+    std::cin>>id;
+    for(int i=0;i<empVector.size();i++)
+    {
+        if(empVector[i].getID()==id)
+        {
+            empVector.erase(empVector.begin()+i);
+        }
+    }
+    // TRUNCATING THE CUSTVECTOR TO THE CUSTOMER.TEXT
+    std::fstream fout("employee.txt",std::ios::binary|std::ios::out|std::ios::trunc);
+    for(int i=0;i<empVector.size();++i)
+    {
+        fout.write((char*)&empVector[i],sizeof(Employee));
+    }
+    fout.close();
+}
+void Controller::deposit(){
+    // @TODO
+    // Rajdeep rajdeep;
+    // int id;
+    // std::cout<<"Enter the ID that you want the money to be deposited ";
+    // std::cin>>id;
+
 }

@@ -38,6 +38,8 @@ class Controller{
     static void modifyEmployee();
     static void displayEmployees();
     static void deleteEmployee();
+    static void deposit();// Acts as withdraw when passed negative value
+    
 };
 
 #endif
