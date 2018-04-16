@@ -250,7 +250,7 @@ void Controller::showAdmin()
     rajdeep.drawLine(50);
     std::cout<<"\tADMIN PORTAL"<<std::endl;
     rajdeep.drawLine(50);
-    std::cout<<"1. Add Employee\n2. Modify Employee\n3. Display Employees\n4. Delete Employees\n5. Add customer\n6. Modify Customer\n7. Display Customers\n8. Delete Customer\n9. Logout to mainmenu\n";
+    std::cout<<"1. Add Employee\n2. Modify Employee\n3. Display Employees\n4. Delete Employees\n5. Add customer\n6. Modify Customer\n7. Display Customers\n8. Delete Customer\n9. Deposit to Customer A/C\n10. Withdraw from Customer A/C\n11. Logout to mainmenu\n";
     int ch;
     std::cout<<"Choose any option: ";
     std::cin>>ch;
@@ -280,6 +280,12 @@ void Controller::showAdmin()
         Controller::deleteCustomer();
         break;
         case 9:
+        Controller::deposit();
+        break;
+        case 10:
+        Controller::withdraw();
+        break;
+        case 11:
         running=false;
         break;
         default:
