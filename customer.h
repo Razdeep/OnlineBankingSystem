@@ -39,5 +39,6 @@ class Customer:public Person{
     float getBalance() const;
     void showDetails() const;
     // void setValues();
+   void deposit(float);
 };
 #endif

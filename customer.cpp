@@ -23,3 +23,7 @@ void Customer::showDetails() const{
 float Customer::getBalance() const{
     return this->balance;
 }
+void Customer::deposit(float money)
+{
+    this->balance+=money;
+}

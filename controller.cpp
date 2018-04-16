@@ -204,7 +204,9 @@ void Controller::showEmployeePortal(const int SESSION)
         std::cout<<"3. View Customers(DEFAULT CHRONOLOGICAL)"<<std::endl;
         std::cout<<"4. View Customers by"<<std::endl;
         std::cout<<"5. Search Customer"<<std::endl;
-        std::cout<<"6. Logout abd return to mainmenu"<<std::endl;
+        std::cout<<"6. Deposit Money to Customer account"<<std::endl;
+        std::cout<<"7. Withdraw Money from Customer account"<<std::endl;
+        std::cout<<"8. Logout and return to mainmenu"<<std::endl;
         int ch;
         std::cin>>ch;
         bool running=true;
@@ -223,9 +225,15 @@ void Controller::showEmployeePortal(const int SESSION)
             std::cout<<"@TODO call Rajdeep to implement this"<<std::endl;
             break;
             case 5:
-
+            std::cout<<"@TODO call Rajdeep to implement this"<<std::endl;
             break;
             case 6:
+            Controller::deposit();
+            break;
+            case 7:
+            Controller::withdraw();
+            break;
+            case 8:
             running=false;
             break;
             default:
@@ -609,7 +617,6 @@ void Controller::displayEmployees()
 }
 void Controller::deleteEmployee()
 {
-    // @TODO
     Rajdeep rajdeep;
     std::vector<Employee> empVector;
     Employee emp;
@@ -629,7 +636,7 @@ void Controller::deleteEmployee()
             empVector.erase(empVector.begin()+i);
         }
     }
-    // TRUNCATING THE CUSTVECTOR TO THE CUSTOMER.TEXT
+    // TRUNCATING THE CUSTVECTOR TO THE EMPLOYEE.TEXT
     std::fstream fout("employee.txt",std::ios::binary|std::ios::out|std::ios::trunc);
     for(int i=0;i<empVector.size();++i)
     {
@@ -638,10 +645,41 @@ void Controller::deleteEmployee()
     fout.close();
 }
 void Controller::deposit(){
+    Rajdeep rajdeep;
+    //LOADING DATA
+    std::vector<Customer> custVector;
+    Customer cust;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&cust,sizeof(Customer)))
+    {
+        custVector.push_back(cust);
+    }
+    fin.close();
+    rajdeep.drawLine(100);
+    std::cout<<"Deposit Window"<<std::endl;
+    rajdeep.drawLine(100);
+    int id;
+    float money;
+    std::cout<<"Enter the ID that you want the money to be deposited ";
+    std::cin>>id;
+    std::cout<<"Enter the amount to deposited ";
+    std::cin>>money;
+    bool SUCCESS=false;
+    for(std::vector<Customer>::iterator itr=custVector.begin();itr!=custVector.end();++itr)
+    {
+        if(itr->getID()==id)
+        {
+            itr->deposit(money);
+            SUCCESS=true;
+            break;
+        }
+    }
+    if(SUCCESS)
+    std::cout<<"Successfully deposited"<<std::endl;
+    else
+    std::cout<<"Transaction could not be completed. Please contact the nearest Branch."<<std::endl;
+}
+void Controller::withdraw()
+{
     // @TODO
-    // Rajdeep rajdeep;
-    // int id;
-    // std::cout<<"Enter the ID that you want the money to be deposited ";
-    // std::cin>>id;
-
 }
