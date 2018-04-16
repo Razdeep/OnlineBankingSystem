@@ -175,7 +175,7 @@ void Controller::showEmployeeLogin()
     {
         if(userCredential==*itr)
         {
-            std::cout<<"Authentication successful"<<std::endl;
+            std::cout<<"Authentication successful"<<std::endl<<std::endl;
             SUCCESS=true;
             SESSION=userCredential.ID;
             showEmployeePortal(SESSION);
@@ -191,42 +191,56 @@ void Controller::showEmployeePortal(const int SESSION)
     // ---------------------------
     // DOING
     // ------------------------
-    std::cout<<"1. Add Customer"<<std::endl;
-    std::cout<<"2. Modify Customer"<<std::endl;
-    std::cout<<"3. View Customers(DEFAULT CHRONOLOGICAL)"<<std::endl;
-    std::cout<<"4. View Customers by"<<std::endl;
-    std::cout<<"5. Search Customer"<<std::endl;
-    int ch;
-    std::cin>>ch;
-    switch(ch)
+    while(1)
     {
-        case 1:
-        Controller::addCustomer();
-        break;
-        case 2:
-        Controller::modifyCustomer();
-        break;
-        case 3:
-        Controller::displayCustomers();
-        break;
-        case 4:
-        std::cout<<"@TODO call Rajdeep to implement this"<<std::endl;
-        break;
-        case 5:
+        std::cout<<"1. Add Customer"<<std::endl;
+        std::cout<<"2. Modify Customer"<<std::endl;
+        std::cout<<"3. View Customers(DEFAULT CHRONOLOGICAL)"<<std::endl;
+        std::cout<<"4. View Customers by"<<std::endl;
+        std::cout<<"5. Search Customer"<<std::endl;
+        std::cout<<"6. Logout abd return to mainmenu"<<std::endl;
+        int ch;
+        std::cin>>ch;
+        bool running=true;
+        switch(ch)
+        {
+            case 1:
+            Controller::addCustomer();
+            break;
+            case 2:
+            Controller::modifyCustomer();
+            break;
+            case 3:
+            Controller::displayCustomers();
+            break;
+            case 4:
+            std::cout<<"@TODO call Rajdeep to implement this"<<std::endl;
+            break;
+            case 5:
 
+            break;
+            case 6:
+            running=false;
+            break;
+            default:
+            std::cout<<"Invalid Option"<<std::endl;
+        }
+        if(!running)
         break;
-        default:
-        std::cout<<"Invalid Option"<<std::endl;
     }
 }
 void Controller::showAdmin()
 {
+    bool running=true;
+    while(1)
+    {
     Rajdeep rajdeep;
     rajdeep.drawLine(50);
-    std::cout<<"\tADMIN PORTAL TESTER"<<std::endl;
+    std::cout<<"\tADMIN PORTAL"<<std::endl;
     rajdeep.drawLine(50);
-    std::cout<<"1. Add Employee\n2. Modify Employee\n3. Display Employees\n4. Delete Employees\n";
+    std::cout<<"1. Add Employee\n2. Modify Employee\n3. Display Employees\n4. Delete Employees\n5. Add customer\n6. Modify Customer\n7. Display Customers\n8. Delete Customer\n9. Logout to mainmenu\n";
     int ch;
+    std::cout<<"Choose any option: ";
     std::cin>>ch;
     switch(ch){
         case 1:
@@ -241,9 +255,28 @@ void Controller::showAdmin()
         case 4:
         Controller::deleteEmployee();
         break;
+        case 5:
+        Controller::addCustomer();
+        break;
+        case 6:
+        Controller::modifyCustomer();
+        break;
+        case 7:
+        Controller::displayCustomers();
+        break;
+        case 8:
+        Controller::deleteCustomer();
+        break;
+        case 9:
+        running=false;
+        break;
         default:
         std::cout<<"Invalid Choice"<<std::endl;
+        }
+        if(!running)
+        break;
     }
+    
 }
 void Controller::showCredits()
 {
@@ -281,11 +314,10 @@ void Controller::addCustomer()
         long int phone;
         TimeStamp dob;
         float bal;
-        std::cout<<"Enter Customer Name; "<<std::endl;
         std::cin.ignore();
+        std::cout<<"Enter Customer Name; "<<std::endl;
         std::cin.getline(name,30);
         std::cout<<"Enter address "<<std::endl;
-        // std::cin.ignore();
         std::cin.getline(address,30);
         std::cout<<"Enter phone "<<std::endl;
         std::cin>>phone;
@@ -346,7 +378,6 @@ void Controller::modifyCustomer()
         std::cin.ignore();
         std::cin.getline(name,30);
         std::cout<<"Enter address "<<std::endl;
-        std::cin.ignore();
         std::cin.getline(address,30);
         std::cout<<"Enter phone "<<std::endl;
         std::cin>>phone;

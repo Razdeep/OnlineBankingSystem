@@ -4,6 +4,9 @@ using namespace std;
 
 int main()
 {
-    Controller::showMenu();
+    while(1)
+    {
+        Controller::showMenu();
+    }
     return 0;
 }
