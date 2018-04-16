@@ -109,7 +109,7 @@ void Controller::showCustomerLogin(){
 
 void Controller::showCustomerPortal(const int SESSION) {
     bool running=true;
-    while(1)
+    while(running)
     {
         std::vector<Customer> custVector;
         std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
@@ -144,9 +144,7 @@ void Controller::showCustomerPortal(const int SESSION) {
             }
             break;
             case 3:
-            {
-                std::cout<<"THIS PART IS NOT IMPLEMENTED YET. @TODO"<<std::endl;
-            }
+            Controller::changeCustomerPassword(SESSION);
             break;
             case 4:
             running=false;
@@ -728,4 +726,50 @@ void Controller::withdraw()
     std::cout<<"Successfully withdrawn Rs. "<<money<<std::endl;
     else
     std::cout<<"Transaction could not be completed. Please contact the nearest Branch."<<std::endl;
+}
+void Controller::changeCustomerPassword(const int SESSION)
+{
+    Rajdeep rajdeep;
+    //LOADING DATA
+    std::vector<Customer> custVector;
+    Customer cust;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&cust,sizeof(Customer)))
+    {
+        custVector.push_back(cust);
+    }
+    fin.close();
+
+    char prevpass[30],newpass[30];
+    rajdeep.drawLine(100);
+    std::cout<<"CHANGE PASSWORD"<<std::endl;
+    rajdeep.drawLine(100);
+    std::cout<<"Enter the previous password ";
+    std::cin.ignore();
+    std::cin.getline(prevpass,30);
+    std::cout<<"Enter new password ";
+    std::cin.getline(newpass,30);
+    bool SUCCESS=false;
+    for(std::vector<Customer>::iterator itr=custVector.begin();
+    itr!=custVector.end();++itr)
+    {
+        if((itr->getID()==SESSION) && !strcmp(itr->getPass(),prevpass))
+        {
+            itr->setPass(newpass);
+            SUCCESS=true;
+            break;
+        }
+    }
+    if(SUCCESS)
+    std::cout<<"Successfully changed your password. Kindly dont share your password with anyone else."<<std::endl;
+    else{ std::cout<<"Could not process your request. Please visit the nearest branch."<<std::endl;
+    std::cout<<"Possibly, you have entered wrong previous password."<<std::endl;
+    }
+    // //WRITING CUSTVECTOR TO THE CUSTOMER.TXT
+    std::fstream fout("customer.txt",std::ios::binary|std::ios::out|std::ios::trunc);
+    for(int i=0;i<custVector.size();i++)
+    {
+        fout.write((char*)&custVector.at(i),sizeof(Customer));
+    }
+    fout.close();
 }

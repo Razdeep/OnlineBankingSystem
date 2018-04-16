@@ -43,3 +43,7 @@ long int Person::getPhone() const{
 const char* Person::getPass() const{
     return this->pass;
 }
+void Person::setPass(const char* newpass)
+{
+    std::strcpy(this->pass,newpass);
+}

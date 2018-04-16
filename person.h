@@ -57,6 +57,6 @@ class Person{
     long int getPhone() const;
     TimeStamp getDob() const;
     const char* getPass() const;
-    
+    void setPass(const char*);
 };
 #endif
