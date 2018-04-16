@@ -674,12 +674,58 @@ void Controller::deposit(){
             break;
         }
     }
+    //WRITING CUSTVECTOR TO THE CUSTOMER.TXT
+    std::fstream fout("customer.txt",std::ios::binary|std::ios::out|std::ios::trunc);
+    for(int i=0;i<custVector.size();i++)
+    {
+        fout.write((char*)&custVector.at(i),sizeof(Customer));
+    }
+    fout.close();
     if(SUCCESS)
-    std::cout<<"Successfully deposited"<<std::endl;
+    std::cout<<"Successfully deposited Rs. "<<money<<std::endl;
     else
     std::cout<<"Transaction could not be completed. Please contact the nearest Branch."<<std::endl;
 }
 void Controller::withdraw()
 {
-    // @TODO
+    Rajdeep rajdeep;
+    //LOADING DATA
+    std::vector<Customer> custVector;
+    Customer cust;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&cust,sizeof(Customer)))
+    {
+        custVector.push_back(cust);
+    }
+    fin.close();
+    rajdeep.drawLine(100);
+    std::cout<<"Withdraw Window"<<std::endl;
+    rajdeep.drawLine(100);
+    int id;
+    float money;
+    std::cout<<"Enter the ID that you want the money to be withdrawn from ";
+    std::cin>>id;
+    std::cout<<"Enter the amount to withdraw ";
+    std::cin>>money;
+    bool SUCCESS=false;
+    for(std::vector<Customer>::iterator itr=custVector.begin();itr!=custVector.end();++itr)
+    {
+        if(itr->getID()==id)
+        {
+            itr->withdraw(money);
+            SUCCESS=true;
+            break;
+        }
+    }
+    // //WRITING CUSTVECTOR TO THE CUSTOMER.TXT
+    std::fstream fout("customer.txt",std::ios::binary|std::ios::out|std::ios::trunc);
+    for(int i=0;i<custVector.size();i++)
+    {
+        fout.write((char*)&custVector.at(i),sizeof(Customer));
+    }
+    fout.close();
+    if(SUCCESS)
+    std::cout<<"Successfully withdrawn Rs. "<<money<<std::endl;
+    else
+    std::cout<<"Transaction could not be completed. Please contact the nearest Branch."<<std::endl;
 }

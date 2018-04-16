@@ -27,3 +27,7 @@ void Customer::deposit(float money)
 {
     this->balance+=money;
 }
+void Customer::withdraw(float money)
+{
+    this->balance-=money;
+}

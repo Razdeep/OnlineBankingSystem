@@ -40,5 +40,6 @@ class Customer:public Person{
     void showDetails() const;
     // void setValues();
    void deposit(float);
+   void withdraw(float);
 };
 #endif
