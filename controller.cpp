@@ -302,8 +302,17 @@ void Controller::showAdmin()
 }
 void Controller::showCredits()
 {
-     // @TODO
-    std::cout<<"@TODO RAJDEEP"<<std::endl;
+    Rajdeep rajdeep;
+    system("clear");
+    rajdeep.drawLine(100);
+    std::cout<<"\t\tBMS - Banking Management System"<<std::endl;
+    rajdeep.drawLine(100);
+    std::cout<<std::endl<<"\tCreated by Rajdeep Roy Chowdhury<rrajdeeproychowdhury@gmail.com>"<<std::endl;
+    std::cout<<"Btech CSE (2nd Sem), Lovely Professional University, Punjab, India"<<std::endl;
+    std::cout<<"Reg: 11712546"<<std::endl<<"Roll: RK17WXB55"<<std::endl;
+    std::cout<<std::endl<<"This Banking Management System serves as project of CSE202(Object Oriented Programming)"<<std::endl;
+    rajdeep.drawLine(100);
+
 }
 
 
