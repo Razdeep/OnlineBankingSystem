@@ -35,10 +35,11 @@ void Controller::showMenu()
     std::cout<<"2. Employee Login"<<std::endl;
     std::cout<<"3. Admin (id: raj, pass: raj)"<<std::endl;
     std::cout<<"4. Credits"<<std::endl;
-    std::cout<<"5. Exit"<<std::endl;
+    std::cout<<"5. License"<<std::endl;
+    std::cout<<"6. Exit"<<std::endl;
 
     std::cout<<std::endl<<std::endl;
-    std::cout<<"\tEnter choice (1-4) ";
+    std::cout<<"\tEnter choice (1-6) ";
     std::cin>>ch;
     switch(ch)
     {
@@ -64,6 +65,9 @@ void Controller::showMenu()
         showCredits();
         break;
         case 5:
+        showLicense();
+        break;
+        case 6:
         exit(0);
         default:
         std::cout<<"Invalid Input. Try again..."<<std::endl;
@@ -778,4 +782,19 @@ void Controller::changeCustomerPassword(const int SESSION)
         fout.write((char*)&custVector.at(i),sizeof(Customer));
     }
     fout.close();
+}
+void Controller::showLicense()
+{
+    Rajdeep rajdeep;
+    system("clear");
+    std::fstream fin("LICENSE",std::ios::in);
+    std::string line;
+    while(!fin.eof())
+    {
+        std::getline(fin,line);
+        std::cout<<line;
+    }
+    std::cout<<std::endl;
+    rajdeep.drawLine(100);
+    fin.close();
 }

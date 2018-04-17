@@ -41,6 +41,7 @@ class Controller{
     static void deposit();// Acts as withdraw when passed negative value
     static void withdraw();
     static void changeCustomerPassword(const int SESSION);
+    static void showLicense();
 };
 
 #endif
