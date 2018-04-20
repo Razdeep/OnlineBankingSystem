@@ -21,8 +21,12 @@
 #ifndef __CONTROLLER_H
 #define __CONTROLLER_H
 class Controller{
+    static bool sortCustomerByName(const Customer&,const Customer&);
+    static bool sortCustomerByDob(const Customer&,const Customer&);
+    static bool sortCustomerById(const Customer&,const Customer&);
+    static bool sortCustomerByBalance(const Customer&,const Customer&);
     public:
-    static void showBanner(); // @TODO
+    static void showBanner();
     static void showMenu();
     static void showCustomerLogin();
     static void showCustomerPortal(const int SESSION);
@@ -34,6 +38,7 @@ class Controller{
     static void modifyCustomer();
     static void displayCustomers();
     static void deleteCustomer();
+    static void displayCustomersBy();
     static void addEmployee();
     static void modifyEmployee();
     static void displayEmployees();
@@ -42,6 +47,7 @@ class Controller{
     static void withdraw();
     static void changeCustomerPassword(const int SESSION);
     static void showLicense();
+    
 };
 
 #endif

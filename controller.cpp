@@ -25,8 +25,13 @@
 #include<fstream>
 #include<vector>
 #include<cstdlib>
-void Controller:: showBanner(){
-    //@TODO
+#include<algorithm>
+void Controller::showBanner(){
+    system("clear");
+    Rajdeep rajdeep;
+    rajdeep.drawLine(100);
+    std::cout<<"\t\tBMS - Banking Management System"<<std::endl;
+    rajdeep.drawLine(100);
 }
 void Controller::showMenu()
 {
@@ -224,7 +229,7 @@ void Controller::showEmployeePortal(const int SESSION)
             Controller::displayCustomers();
             break;
             case 4:
-            std::cout<<"@TODO call Rajdeep to implement this"<<std::endl;
+            Controller::displayCustomersBy();
             break;
             case 5:
             std::cout<<"@TODO call Rajdeep to implement this"<<std::endl;
@@ -312,7 +317,9 @@ void Controller::showCredits()
     std::cout<<"Reg: 11712546"<<std::endl<<"Roll: RK17WXB55"<<std::endl;
     std::cout<<std::endl<<"This Banking Management System serves as project of CSE202(Object Oriented Programming)"<<std::endl;
     rajdeep.drawLine(100);
-
+    char buff[10];
+    std::cout<<"Y to Continue"<<std::endl;
+    std::cin>>buff;
 }
 
 
@@ -487,6 +494,52 @@ void Controller::deleteCustomer(){
         fout.write((char*)&custVector[i],sizeof(Customer));
     }
     fout.close();
+}
+void Controller::displayCustomersBy(){
+    Rajdeep rajdeep;
+    std::vector<Customer> custVector;
+    Customer cust;
+    std::fstream fin("customer.txt",std::ios::binary|std::ios::in);
+    while(fin.read((char*)&cust,sizeof(Customer)))
+    {
+        custVector.push_back(cust);
+    }
+    fin.close();
+    rajdeep.drawLine(100);
+    // std::cout<<"Sorted to names..."<<std::endl;
+    // std::sort(custVector.begin(),custVector.end(),sortCustomerByName);
+    int ch;
+    std::cout<<"1. Sort by ID "<<std::endl;
+    std::cout<<"2. Sort by Name "<<std::endl;
+    std::cout<<"3. Sort by Date of Birth "<<std::endl;
+    std::cout<<"4. Sort by Balance "<<std::endl;
+    std::cin>>ch;
+    switch(ch)
+    {
+        case 1:
+        std::sort(custVector.begin(),custVector.end(),sortCustomerById);
+        break;
+        case 2:
+        std::sort(custVector.begin(),custVector.end(),sortCustomerByName);
+        break;
+        case 3:
+        std::sort(custVector.begin(),custVector.end(),sortCustomerByDob);
+        break;
+        case 4:
+        std::sort(custVector.begin(),custVector.end(),sortCustomerByBalance);
+        break;
+    }
+    std::cout<<"ID\tNAME\tADDRESS\tPHONE\t\tDOB\tPASSWORD\tBALANCE"<<std::endl;
+    rajdeep.drawLine(100);
+    for(std::vector<Customer>::iterator itr=custVector.begin();
+    itr!=custVector.end();++itr)
+    {
+        std::cout<<itr->getID()<<"\t"<<itr->getName()<<"\t"<<itr->getAddress()<<"\t"
+        <<itr->getPhone()<<"\t"<<(itr->getDob()).toString()<<"\t"<<itr->getPass()<<
+        "\t"<<itr->getBalance()<<std::endl;
+    }
+    rajdeep.drawLine(100);
+    std::cout<<std::endl;
 }
 void Controller::addEmployee()
 {
@@ -806,4 +859,34 @@ void Controller::showLicense()
     std::cout<<std::endl;
     rajdeep.drawLine(100);
     fin.close();
+    char buff[10];
+    std::cout<<"Y to Continue"<<std::endl;
+    std::cin>>buff;
 }
+
+//***********SORTING ALGORITHMS*************
+bool Controller::sortCustomerByName(const Customer& c1,const Customer& c2)
+{
+    if(strcmp(c1.getName(),c2.getName())<0)
+    return true;
+    else return false;
+}
+bool Controller::sortCustomerByDob(const Customer& c1,const Customer& c2)
+{
+    if(c1.getDob()<c2.getDob())
+    return true;
+    else return false;
+}
+bool Controller::sortCustomerById(const Customer& c1,const Customer& c2)
+{
+    if(c1.getID()<c2.getID())
+    return true;
+    else return false;
+}
+bool Controller::sortCustomerByBalance(const Customer& c1,const Customer& c2)
+{
+    if(c1.getBalance()<c2.getBalance())
+    return true;
+    else return false;
+}
+//********SORTING ALGO ENDS****************
