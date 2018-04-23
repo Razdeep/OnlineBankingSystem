@@ -1,18 +1,14 @@
-// This file is for individual tetsting of files
-
+// This file is for testing transaction module
 #include<iostream>
-#include"timestamp.h"
-#include"timestamp.cpp"
-using namespace std;
-int main()
+#include"utility.h"
+#include"txn.h"
+int main(int argc, char *argv[])
 {
-    TimeStamp t1(31,8,1998),t2(21,07,1998);
-    if(t1>t2)
-    cout<<"I'm older"<<endl;
-    if(t2<t1)
-    cout<<"She's younger"<<endl;
-    if(t1==t2);else
-    cout<<"Different ages"<<endl;
+    TimeStamp ts(21,07,2001);
+    Customer cust(99,"Hinata","Hyuga Castle",404,ts,"root",10000);
 
-    return 0;
+    Txn *txn=new Txn(101,ts,cust,2000,'d');
+    txn->printTxn();
+    delete txn;
+    return EXIT_SUCCESS;
 }
